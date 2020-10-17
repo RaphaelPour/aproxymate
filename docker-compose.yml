@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  caddy:
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - caddy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # this volume is needed to keep the certificates
+      # otherwise, new ones will be re-issued upon restart
+      - caddy_data:/data
+    labels: # Global options
+      caddy.email: caddy@evilcookie.de
+
+networks:
+  caddy:
+    driver: overlay
+
+volumes:
+  caddy_data: {}

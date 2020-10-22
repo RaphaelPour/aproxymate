@@ -1,0 +1,33 @@
+version: '3.7'
+
+#
+# This is a docker-compose template for a webserver which should be
+# proxied by aproxymate. The proxy itself will notice the new container
+# automatically if it is set up correctly (with the appropiate labels)
+#
+
+services:
+  web:
+    container_name: blog
+    build: .
+    restart: always
+    labels:
+      # All caddy* labels will be collected from the reverse-proxy
+      # once this container runs. The reverse-proxy will generate
+      # a caddyfile config from it and merge it with all the others.
+
+      # Domain name for which all connections should be redirected
+      # to this container
+      caddy: <domain name>
+
+      # Connection details telling the reverse-proxy how to reach
+      # this web server.
+      # Hint: Deactivate SSL support, since the reverse-proxy
+      #       is already doing this for us automatically.
+      caddy.reverse_proxy: "{{upstreams http <port>}}"
+
+networks:
+  default:
+    external:
+      # Network of the reverse proxy
+      name: aproxymate_caddy

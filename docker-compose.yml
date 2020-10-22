@@ -18,7 +18,6 @@ services:
 
 networks:
   caddy:
-    driver: overlay
 
 volumes:
   caddy_data: {}

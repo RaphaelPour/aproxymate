@@ -4,20 +4,23 @@ services:
   caddy:
     image: lucaslorentz/caddy-docker-proxy:ci-alpine
     ports:
-      - 80:80
-      - 443:443
+      - 80:80  # http (for redirecting to http)
+      - 443:443 # https
     networks:
       - caddy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      # this volume is needed to keep the certificates
-      # otherwise, new ones will be re-issued upon restart
       - caddy_data:/data
-    labels: # Global options
+    labels:
       caddy.email: caddy@evilcookie.de
 
 networks:
+  # Private network to connect the reverse-proxy with
+  # all the webservers which should be proxied to the
+  # public interface
   caddy:
 
 volumes:
+  # Volume to store SSL Certificates permanently to
+  # avoid Let's encrypt rate-limiting
   caddy_data: {}

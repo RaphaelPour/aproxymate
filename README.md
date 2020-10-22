@@ -1,6 +1,6 @@
 # aproxymate
 
-A caddy proxy mate is a reverse-proxy with a template for easily adding further dockerized webservers behind the proxy.
+Aproxymate is a caddy reverse-proxy container. The template can be used to add dockerized webservers behind it.
 
 ![Aproxymate diagram](./aproxymate_diagram.svg)
 

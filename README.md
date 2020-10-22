@@ -2,6 +2,8 @@
 
 A caddy proxy mate is a reverse-proxy with a template for easily adding further dockerized webservers behind the proxy.
 
+![Aproximate diagram](./aproximate_diagram.svg)
+
 ## Getting started
 
 1. Use `docker-compose.template.yml` to create your own `docker-compose.yml` in your dockerized web project.

@@ -2,7 +2,7 @@
 
 A caddy proxy mate is a reverse-proxy with a template for easily adding further dockerized webservers behind the proxy.
 
-![Aproximate diagram](./aproximate_diagram.svg)
+![Aproxymate diagram](./aproxymate_diagram.svg)
 
 ## Getting started
 
